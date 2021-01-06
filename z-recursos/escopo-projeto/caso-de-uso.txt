@@ -1,0 +1,18 @@
+#######################################################################################################################
+# REGISTRAR PEDIDO
+    1. [OUT] O sistema mostra uma listagem com nome, preço, descrição e foto de todos os produtos, ordenados por nome.
+
+    2. [IN] O cliente seleciona os produtos desejados e informa a localização de entrega do pedido.
+
+    3. [OUT] O sistema informa o código do pedido.
+
+#######################################################################################################################
+# ENTREGAR PEDIDO
+    1. [OUT] O sistema informa uma listagem contendo o código, valor total, tempo e itens, dos pedidos pendentes, ordenados
+do mais antigo para o mais recente
+
+    2. [IN] O entregador seleciona um pedido.
+
+    3. [OUT] O sistema informa um mapa com a rota até a localização de entrega.
+
+    3. [IN] O entregador informa que o pedido foi entregue.
