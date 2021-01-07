@@ -56,8 +56,7 @@ public class AppMain {
     private static List<Order> getListOrderWithProducts(Statement st) throws SQLException {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("      SELECT                                                                              ");
-        stringBuilder.append("             *                                                                            ");
+        stringBuilder.append("     SELECT *                                                                             ");
         stringBuilder.append("       FROM dev_pedidos.tb_order                                                          ");
         stringBuilder.append(" INNER JOIN dev_pedidos.tb_order_product ON (tb_order.id = tb_order_product.order_id)     ");
         stringBuilder.append(" INNER JOIN dev_pedidos.tb_product       ON (tb_product.id = tb_order_product.product_id) ");
@@ -68,23 +67,32 @@ public class AppMain {
         Map<Long, Product> productMap = new HashMap<>();
 
         while (rs.next()) {
-            Long orderId = rs.getLong("order_id");
-            if (Objects.isNull(orderMap.get(orderId))) {
-                Order order = instanceOrderFrom(rs, "order_id");
-                order.instanceListProducts();
-                orderMap.put(orderId, order);
-            }
-
-            Long productId = rs.getLong("product_id");
-            if (Objects.isNull(productMap.get(orderId))) {
-                Product product = instanceProductFrom(rs);
-                productMap.put(productId, product);
-            }
-
-            orderMap.get(orderId).getProducts().add(productMap.get(productId));
+            orderMap = getMapListOrdersFrom(rs, orderMap, productMap);
         }
 
         return orderMap.values().stream().filter(Objects::nonNull).collect(Collectors.toList());
+    }
+
+    private static Map<Long, Order> getMapListOrdersFrom(ResultSet rs,
+                                                         Map<Long, Order> orderMap,
+                                                         Map<Long, Product> productMap) throws SQLException {
+        Long idOrder = rs.getLong("order_id");
+
+        if (Objects.isNull(orderMap.get(idOrder))) {
+            Order order = instanceOrderFrom(rs, "order_id");
+            order.instanceListProducts();
+            orderMap.put(idOrder, order);
+        }
+
+        Long idProduct = rs.getLong("product_id");
+
+        if (Objects.isNull(productMap.get(idProduct))) {
+            Product product = instanceProductFrom(rs);
+            productMap.put(idProduct, product);
+        }
+
+        orderMap.get(idOrder).getProducts().add(productMap.get(idProduct));
+        return orderMap;
     }
 
     private static List<Order> getListOrder(Statement st) throws SQLException {
