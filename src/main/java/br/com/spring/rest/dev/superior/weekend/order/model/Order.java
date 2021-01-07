@@ -12,6 +12,7 @@ public class Order {
     private Long id;
     private BigDecimal latitude;
     private BigDecimal longitude;
+    private String adress;
     private Instant moment;
     private OrderStatus orderStatus;
     private BigDecimal valorTotal;
