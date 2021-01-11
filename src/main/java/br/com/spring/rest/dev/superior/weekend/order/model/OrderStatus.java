@@ -5,11 +5,9 @@ import java.util.stream.Stream;
 
 public enum OrderStatus {
 
-    DEFAULT(0, "N/A"),
+    PENDING(0, "Pending"),
 
-    PENDING(1, "Pending"),
-
-    DELIVERED(2, "Delivered");
+    DELIVERED(1, "Delivered");
 
     private final int id;
     private final String description;
