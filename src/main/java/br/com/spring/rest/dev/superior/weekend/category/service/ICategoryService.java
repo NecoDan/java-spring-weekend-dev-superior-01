@@ -6,6 +6,7 @@ import br.com.spring.rest.dev.superior.weekend.category.model.Category;
 import java.util.List;
 
 public interface ICategoryService {
+
     List<Category> findAll();
 
     List<CategoryModel> findAllCategoryModel();
