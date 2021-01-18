@@ -11,7 +11,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ProductModel {
+
     private Long id;
+
     private String name;
+
     private CategoryModel category;
 }

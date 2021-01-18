@@ -10,7 +10,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ProductSummaryModel {
+
     private Long id;
+
     private String name;
+
     private String nameCategory;
 }
